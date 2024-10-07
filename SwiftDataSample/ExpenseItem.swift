@@ -10,11 +10,11 @@ import SwiftData
 
 @Model
 class ExpenseItem: Hashable {
-    var menuName: String
-    var price: Int
+    var expenseName: String
+    var amount: Double
     
-    init(menuName: String, price: Int) {
-        self.menuName = menuName
-        self.price = price
+    init(expenseName: String, amount: Double) {
+        self.expenseName = expenseName
+        self.amount = amount
     }
 }

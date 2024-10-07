@@ -13,7 +13,7 @@ struct SwiftDataSampleApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .modelContainer(for: MenuItem.self)
+                .modelContainer(for: ExpenseItem.self)
         }
     }
 }

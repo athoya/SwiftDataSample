@@ -9,33 +9,35 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Query var menus: [MenuItem]
+    @Query var expenses: [ExpenseItem]
     @Environment(\.modelContext) private var context
 
-//    var menus: [MenuItem] = [
-//        MenuItem(menuName: "Noodle", price: "$0.99"),
-//        MenuItem(menuName: "Fried Rice", price: "$1.99")
-//    ]
     @State var showSheetPresented = false
     
     var body: some View {
         NavigationStack {
-            List(menus, id: \.self, rowContent: { menu in
+            List(expenses, id: \.self, rowContent: { item in
                 VStack(alignment: .leading) {
-                    Text(menu.menuName).font(.headline)
-                    Text(menu.price)
+                    Text(item.expenseName).font(.headline)
+                    Text("\(item.amount.formatted())")
                 }
             })
             .toolbar {
                 Button {
                     showSheetPresented.toggle()
                 } label: {
-                    Text("Add Item")
+                    Text("Add")
                 }
             }
+            VStack(alignment: .trailing) {
+                Text("Total: ")
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding()
+            }
+            .background(.gray)
         }
         .sheet(isPresented: $showSheetPresented) {
-            AddMenuView()
+            AddExpenseView()
         }
     }
 }
