@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddMenuView: View {
+struct AddExpenseView: View {
     @Environment(\.dismiss) private var dismiss
     
     @Environment(\.modelContext) private var context
@@ -30,7 +30,7 @@ struct AddMenuView: View {
             .padding()
             .toolbar {
                 Button(action: {
-                    context.insert(MenuItem(menuName: menuName, price: price))
+                    context.insert(ExpenseItem(menuName: menuName, price: Int(price) ?? 0))
                     dismiss()
                 }, label: {
                     Text("Save")
@@ -42,5 +42,5 @@ struct AddMenuView: View {
 }
 
 #Preview {
-    AddMenuView()
+    AddExpenseView()
 }
